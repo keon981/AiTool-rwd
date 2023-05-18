@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
-
+import { useEffect } from "react";
 const Login = () => {
     const [data, setData] = useState({
-        userName: "",
+        username: "",
         password: "",
     });
     const handleChange = (e) => {
@@ -11,16 +11,28 @@ const Login = () => {
         setData({ ...data, [name]: value });
     };
     const useSubmit = async (e) => {
+        console.clear();
         const signin = await axios.post(`/v2/admin/signin`, data);
-        const productRes = await axios.get(`/v2/api/${import.meta.env.VITE_API_PATH}/admin/products/all`);
-        console.log(`data`, data, `signin`, signin);
-        e.preventDefault();
+        const { token, expired } = signin.data;
+        document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;
     };
+    useEffect(() => {
+        const token = document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("hexToken="))
+            ?.split("=")[1];
+        axios.defaults.headers.common["Authorization"] = token;
+        (async () => {
+            const productRes = await axios.get(`/v2/api/${import.meta.env.VITE_API_PATH}/admin/products/all`);
+            console.log(productRes);
+        })();
+    }, []);
+
     return (
-        <form>
+        <div>
             <div className="mb-3">
                 <label htmlFor="username" className="form-label">
-                    Email address
+                    帳號
                 </label>
                 <input
                     type="email"
@@ -36,7 +48,7 @@ const Login = () => {
             </div>
             <div class="mb-3">
                 <label htmlFor="password" className="form-label">
-                    Password
+                    密碼
                 </label>
                 <input
                     type="password"
@@ -50,7 +62,7 @@ const Login = () => {
             <button type="submit" className="btn btn-primary" onClick={useSubmit}>
                 Submit
             </button>
-        </form>
+        </div>
     );
 };
 
