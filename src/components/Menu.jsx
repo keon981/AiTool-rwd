@@ -5,12 +5,12 @@ const Menu = () => {
     const navigate = useNavigate();
     const logout = () => {
         document.cookie = `hexToken=;`;
-        navigate(`/login`);
+        navigate(`/`);
     };
     return (
         <ul className="list-group list-group-flush">
             <li className="list-group-item">
-                <Link to="/login">登入</Link>
+                <Link to="/">登入</Link>
             </li>
             <li className="list-group-item">
                 <Link to="/admin">產品列表</Link>

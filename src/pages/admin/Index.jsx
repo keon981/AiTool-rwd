@@ -2,6 +2,7 @@ import React from "react";
 import ProductTable from "../ProductTable";
 import { Outlet } from "react-router-dom";
 import axios from "axios";
+import Menu from "../../components/Menu";
 
 const Index = () => {
     const token = document.cookie
@@ -16,7 +17,7 @@ const Index = () => {
             <hr />
             <section className="row">
                 <div className="col-3 p-0 pt-5 vh-100">
-                    <Menu />
+                    <Menu/>
                 </div>
                 <main className="col-9">
                     <Outlet />

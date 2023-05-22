@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 import Login from "./pages/Login";
 import Admin from "./pages/admin/Index";
-import Menu from "./components/Menu";
 import ProductTable from "./pages/ProductTable";
 
 const App = () => {
