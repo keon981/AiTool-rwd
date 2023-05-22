@@ -19,8 +19,8 @@ const Login = () => {
       const { token, expired } = signin.data;
       document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;
       if (signin.data.success) return navigate(`/admin`);
+      console.log(token);
     } catch (error) {
-      console.log(error);
       setLoginState(error.response.data);
     }
   };

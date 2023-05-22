@@ -2,28 +2,40 @@ import './style/index.scss';
 import { useEffect } from 'react';
 
 import axios from 'axios';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import Admin from './pages/admin/Index';
 import Login from './pages/Login';
+import NotFound from './pages/NotFound';
 import ProductTable from './pages/ProductTable';
 
 const App = () => {
-  const api_path = import.meta.env.VITE_API_PATH;
-  useEffect(() => {
-    (async () => {
-      const res = await axios.get(`v2/api/${api_path}/products/all`);
-      console.log(res);
-    })();
-  }, []);
+  const navigate = useNavigate();
+  const token = document.cookie;
+  axios.defaults.headers.common['Authorization'] = token;
 
+  useEffect(() => {
+    if (!token) return navigate(`/`);
+    (async () => {
+      try {
+        await axios.post(`v2/api/user/check`);
+      } catch (err) {
+        // if (!err.response.data.success) navigate(`/`);
+        console.log(err);
+        console.log(token);
+      }
+    })();
+  }, [navigate, token]);
   return (
     <>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/admin" element={<Admin />}>
-          <Route index element={<ProductTable />} />
-        </Route>
+        {token && (
+          <Route path="/admin" element={<Admin />}>
+            <Route index element={<ProductTable />} />
+          </Route>
+        )}
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </>
   );

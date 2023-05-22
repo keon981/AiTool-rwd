@@ -5,8 +5,8 @@ import axios from 'axios';
 const ProductTable = () => {
   useEffect(() => {
     (async () => {
-      const productRes = await axios.get(`/v2/api/${import.meta.env.VITE_API_PATH}/admin/products/all`);
-      console.log(productRes);
+      const res = await axios.get(`/v2/api/${import.meta.env.VITE_API_PATH}/products/all`);
+      console.log(res);
     })();
   }, []);
 
