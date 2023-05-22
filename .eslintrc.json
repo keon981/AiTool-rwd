@@ -13,9 +13,7 @@
   ],
   "ignorePatterns": ["vite.config.ts"],
   "parserOptions": {
-    "ecmaVersion": {
-      "jsx": true
-    },
+    "jsx": true,
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
