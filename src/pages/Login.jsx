@@ -1,24 +1,27 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
 const Login = () => {
   const navigate = useNavigate();
   const [data, setData] = useState({
     username: '',
-    password: ''
+    password: '',
   });
   const [loginState, setLoginState] = useState({});
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
+  // eslint-disable-next-line consistent-return
   const useSubmit = async () => {
     try {
-      const signin = await axios.post(`/v2/admin/signin`, data);
+      const signin = await axios.post('/v2/admin/signin', data);
       const { token, expired } = signin.data;
       document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;
-      if (signin.data.success) return navigate(`/admin`);
+      if (signin.data.success) return navigate('/admin');
       console.log(token);
     } catch (error) {
       setLoginState(error.response.data);
@@ -29,7 +32,7 @@ const Login = () => {
     <>
       <h1 className="my-3 text-primary text-center">Login</h1>
       <hr />
-      <div className={`alert alert-danger ${loginState.message ? `d-block` : `d-none`}`} role="alert">
+      <div className={`alert alert-danger ${loginState.message ? 'd-block' : 'd-none'}`} role="alert">
         錯誤
       </div>
       <section className="mx-auto mt-5 w-50 p-5 border rounded">

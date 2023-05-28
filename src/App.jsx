@@ -7,7 +7,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import Admin from './pages/admin/Index';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
-import ProductTable from './pages/ProductTable';
+import ProductList from './pages/ProductList';
 
 const App = () => {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const App = () => {
       <Route path="/" element={<Login />} />
       {token && (
       <Route path="/admin" element={<Admin />}>
-        <Route index element={<ProductTable />} />
+        <Route index element={<ProductList />} />
       </Route>
       )}
       <Route path="/*" element={<NotFound />} />
