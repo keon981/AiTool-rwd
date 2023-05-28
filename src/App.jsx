@@ -12,13 +12,14 @@ import ProductTable from './pages/ProductTable';
 const App = () => {
   const navigate = useNavigate();
   const token = document.cookie;
-  axios.defaults.headers.common['Authorization'] = token;
+  axios.defaults.headers.common.Authorization = token;
 
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
-    if (!token) return navigate(`/`);
+    if (!token) return navigate('/');
     (async () => {
       try {
-        await axios.post(`v2/api/user/check`);
+        await axios.post('v2/api/user/check');
       } catch (err) {
         // if (!err.response.data.success) navigate(`/`);
         console.log(err);
@@ -27,17 +28,15 @@ const App = () => {
     })();
   }, [navigate, token]);
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        {token && (
-          <Route path="/admin" element={<Admin />}>
-            <Route index element={<ProductTable />} />
-          </Route>
-        )}
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      {token && (
+      <Route path="/admin" element={<Admin />}>
+        <Route index element={<ProductTable />} />
+      </Route>
+      )}
+      <Route path="/*" element={<NotFound />} />
+    </Routes>
   );
 };
 

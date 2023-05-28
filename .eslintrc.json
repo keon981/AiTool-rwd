@@ -1,36 +1,25 @@
 {
   "env": {
     "browser": true,
-    "node": true,
-    "es2021": true
+    "es2021": true,
+    "node": true
   },
   "extends": [
-    "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:import/recommended",
-    "plugin:jsx-a11y/recommended",
-    "eslint-config-prettier"
+    "airbnb",
+    "plugin:import/recommended"
   ],
-  "ignorePatterns": ["vite.config.ts"],
+  "ignorePatterns": ["vite.config.js"],
+  // "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "jsx": true,
+    "ecmaFeatures": {
+      "jsx": true
+    },
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "settings": {
-    "react": {
-      "version": "detect"
-    },
-    "import/resolver": {
-      "node": {
-        "paths": ["src"],
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
-    }
-  },
   "plugins": ["react"],
   "rules": {
-    // 配置规则
     "semi": ["error", "always"],
     "import/order": [
       "error",
@@ -59,6 +48,20 @@
         "allowForLoopAfterthoughts": true
       }
     ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "test.{js,jsx}", // repos with a single test file
+          "test-*.{js,jsx}", // repos with multiple top-level test files
+          "**/*{.,_}{test,spec}.{js,jsx}", // tests where the extension or filename suffix denotes that it is a test
+          "src/setupTests.js" // setup
+        ],
+        "optionalDependencies": false
+      }
+    ],
+    "react/prop-types": 0,
+    "react/button-has-type": "off",
     "react/function-component-definition": "off",
     "arrow-body-style": "off",
     "import/prefer-default-export": "off",
@@ -66,8 +69,6 @@
     "no-param-reassign": "off",
     "no-alert": "off",
     "react/require-default-props": "off",
-    "react/jsx-props-no-spreading": "off",
-    "react/jsx-uses-react": "error",
-    "react/jsx-uses-vars": "error"
+    "react/jsx-props-no-spreading": "off"
   }
 }
