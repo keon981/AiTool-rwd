@@ -16,7 +16,7 @@ const ProductList = () => {
       setProducts(res.data.products);
       setPagination(res.data.pagination);
     })();
-  }, []);
+  }, [products]);
 
   return (
     <section>

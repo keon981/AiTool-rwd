@@ -14,8 +14,8 @@ const ProductTable = ({ products }) => {
       </thead>
       <tbody>
         {products.map((item) => (
-          <tr>
-            <th scope="row">{item.num + 1}</th>
+          <tr key={item.id}>
+            <th scope="row">{item.num}</th>
             <td>{item.category}</td>
             <td>{item.content}</td>
             <td>{item.description}</td>
