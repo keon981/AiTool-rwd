@@ -11,17 +11,17 @@ const Index = () => {
     .split('; ')
     .find((row) => row.startsWith('hexToken='))
     ?.split('=')[1];
-  axios.defaults.headers.common['Authorization'] = token;
+  axios.defaults.headers.common.Authorization = token;
   useEffect(() => {}, [navigate, token]);
   return (
     <div className="container-fluid">
       <h1 className="my-3 text-primary">產品列表</h1>
       <hr />
       <section className="row">
-        <div className="col-3 p-0 pt-5 vh-100">
+        <div className="col-12 col-lg-3 p-0 ">
           <Menu />
         </div>
-        <main className="col-9">
+        <main className="col-12 col-lg-9">
           <Outlet />
         </main>
       </section>

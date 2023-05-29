@@ -1,11 +1,12 @@
 import React from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
+
 const Menu = () => {
   const navigate = useNavigate();
   const logout = () => {
-    document.cookie = `hexToken=;`;
-    navigate(`/`);
+    document.cookie = 'hexToken=;';
+    navigate('/');
   };
 
   return (
@@ -14,10 +15,10 @@ const Menu = () => {
         <Link to="/admin">產品列表</Link>
       </li>
       <li className="list-group-item">
-        <Link to="#">優惠券列表</Link>
+        <Link to="/admin">優惠券列表</Link>
       </li>
       <li className="list-group-item">
-        <Link to="#">訂單列表</Link>
+        <Link to="/admin">訂單列表</Link>
       </li>
       <li className="list-group-item">
         <button type="button" className="btn btn-primary btn-sm" onClick={logout}>

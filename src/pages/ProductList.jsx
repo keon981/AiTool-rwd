@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
 
-import Modal from '../components/ModalBtn';
+import ModalBtn from '../components/ModalBtn';
 import Pagination from '../components/Pagination';
 import ProductTable from '../components/ProductTable';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [pagination, setPagination] = useState({});
+  // const [productData, setProductData] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -21,7 +22,7 @@ const ProductList = () => {
   return (
     <section>
       <div className="d-flex justify-content-end my-2">
-        <Modal title="新增商品" />
+        <ModalBtn btnText="新增商品" idName="create" type="create" />
       </div>
       <ProductTable products={products} />
       <Pagination pagination={pagination} />
