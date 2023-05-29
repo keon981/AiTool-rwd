@@ -1,20 +1,38 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useRef, useEffect } from 'react';
+import { useState } from 'react';
 
 import { Modal } from 'bootstrap';
 
 import ModalPage from './ModalPage';
 
 const ModalBtn = ({
-  btnText, outLine, idName, type,
+  btnText, outLine, idName, type, productData,
 }) => {
   const productModal = useRef(null);
+  const [newData, setNewData] = useState({});
   const showModal = () => {
     productModal.current.show();
     console.log('type---', type);
+    if (type === 'create') {
+      setNewData({
+        title: '',
+        category: '',
+        origin_price: 100,
+        price: 300,
+        unit: '',
+        description: '',
+        content: '',
+        is_enabled: 1,
+        imageUrl: '',
+      });
+    } else if (type === 'edit') {
+      setNewData(productData);
+      console.log('productData-----', productData);
+    }
   };
   const hideModal = () => {
-    productModal.current.hide().dispose();
+    productModal.current.hide();
   };
 
   useEffect(() => {
@@ -28,7 +46,13 @@ const ModalBtn = ({
       <button type="button" className={`btn ${outLine ? 'btn-outline-primary' : 'btn-primary'} m-1`} onClick={showModal}>
         {btnText}
       </button>
-      <ModalPage hideModal={hideModal} idName={idName} type={type} />
+      <ModalPage
+        setNewData={setNewData}
+        newData={newData}
+        hideModal={hideModal}
+        idName={idName}
+        type={type}
+      />
     </>
   );
 };

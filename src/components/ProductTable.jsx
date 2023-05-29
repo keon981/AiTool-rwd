@@ -25,7 +25,7 @@ const ProductTable = ({ products }) => {
             <td>{item.description}</td>
             <td>{item.unit}</td>
             <th className="d-grid d-md-block text-center">
-              <ModalBtn btnText="編輯" idName={`${item.id}edit`} type="edit" />
+              <ModalBtn btnText="編輯" idName={`${item.id}edit`} type="edit" productData={item} />
               <ModalBtn btnText="刪除" outLine="true" idName={`${item.id}delete`} type="delete" />
             </th>
           </tr>

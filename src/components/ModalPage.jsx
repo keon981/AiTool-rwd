@@ -1,25 +1,14 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React from 'react';
 
 import axios from 'axios';
 
 import CreateForm from './form/CreateForm';
 
-const ModalPage = ({ hideModal, idName, type }) => {
-  const [newData, setNewData] = useState({
-    title: '',
-    category: '',
-    origin_price: 100,
-    price: 300,
-    unit: '',
-    description: '',
-    content: '',
-    is_enabled: 1,
-    imageUrl: '',
-  });
-  const [productData, setProductData] = useState({});
-
+const ModalPage = ({
+  newData, hideModal, idName, type, setNewData,
+}) => {
   const handleSumbit = async (e) => {
     e.preventDefault();
     try {
@@ -43,16 +32,12 @@ const ModalPage = ({ hideModal, idName, type }) => {
             <button type="button" className="btn-close" aria-label="Close" onClick={() => hideModal()} />
           </header>
 
-          {type === 'create'
-            && (<CreateForm newData={newData} setNewData={setNewData} />)}
-          {/* {type === 'edit'
-              && (<CreateForm productData={productData} setProductData={setProductData} />)} */}
-          {type === 'delete'
-                && (
-                  <div className="modal-body">
-                    <p>Modal body text goes here.</p>
-                  </div>
-                )}
+          {type === 'create' || type === 'edit'
+            ? (<CreateForm newData={newData} setNewData={setNewData} />) : (
+              <div className="modal-body">
+                <p>Modal body text goes here.</p>
+              </div>
+            )}
 
           <menu className="modal-footer">
             <button type="reset" className="btn btn-secondary">重置</button>
