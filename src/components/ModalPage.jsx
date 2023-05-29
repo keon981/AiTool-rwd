@@ -7,7 +7,7 @@ import axios from 'axios';
 import CreateForm from './form/CreateForm';
 
 const ModalPage = ({
-  newData, hideModal, idName, type, setNewData,
+  newData, hideModal, idName, type, setNewData, getProductData,
 }) => {
   const handleSumbit = async (e) => {
     e.preventDefault();
@@ -36,19 +36,30 @@ const ModalPage = ({
             <h5 className="modal-title" id="exampleModalLabel">
               {type === 'create' ? '建立新商品' : `編輯 ${newData.title}`}
             </h5>
-            <button type="button" className="btn-close" aria-label="Close" onClick={() => hideModal()} />
+            <button type="button" className="btn-close" aria-label="Close" onClick={hideModal} />
           </header>
 
           {type === 'delete'
             ? (
               <div className="modal-body">
-                <p>Modal body text goes here.</p>
+                <p>確定要刪除?</p>
               </div>
             ) : (<CreateForm newData={newData} setNewData={setNewData} />) }
 
           <menu className="modal-footer">
-            <button type="reset" className="btn btn-secondary">重置</button>
-            <button type="submit" className="btn btn-primary">送出</button>
+            {type === 'delete'
+              ? (
+                <>
+                  <button type="button" className="btn btn-secondary" onClick={hideModal}>取消</button>
+                  <button type="submit" className="btn btn-primary">確定</button>
+                </>
+              )
+              : (
+                <>
+                  <button type="reset" className="btn btn-secondary">重置</button>
+                  <button type="submit" className="btn btn-primary" onClick={getProductData}>送出</button>
+                </>
+              )}
           </menu>
         </form>
       </section>

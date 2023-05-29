@@ -2,7 +2,7 @@ import React from 'react';
 
 import ModalBtn from './ModalBtn';
 
-const ProductTable = ({ products }) => {
+const ProductTable = ({ products, getProductData }) => {
   return (
     <table className="table table-primary">
       <thead>
@@ -24,7 +24,7 @@ const ProductTable = ({ products }) => {
             <td>{item.description}</td>
             <td>{item.unit}</td>
             <th className="d-grid d-md-block text-center">
-              <ModalBtn btnText="編輯" idName={`${item.id}edit`} type="edit" productData={item} />
+              <ModalBtn btnText="編輯" idName={`${item.id}edit`} type="edit" productData={item} getProductData={getProductData} />
               <ModalBtn btnText="刪除" outLine="true" idName={`${item.id}delete`} type="delete" />
             </th>
           </tr>

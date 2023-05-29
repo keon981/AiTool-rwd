@@ -7,13 +7,12 @@ import { Modal } from 'bootstrap';
 import ModalPage from './ModalPage';
 
 const ModalBtn = ({
-  btnText, outLine, idName, type, productData,
+  btnText, outLine, idName, type, productData, getProductData,
 }) => {
   const productModal = useRef(null);
   const [newData, setNewData] = useState({});
   const showModal = () => {
     productModal.current.show();
-    console.log('type---', type);
     if (type === 'create') {
       setNewData({
         title: '',
@@ -28,7 +27,6 @@ const ModalBtn = ({
       });
     } else if (type === 'edit') {
       setNewData(productData);
-      console.log('productData-----', productData);
     }
   };
   const hideModal = () => {
@@ -52,6 +50,7 @@ const ModalBtn = ({
         hideModal={hideModal}
         idName={idName}
         type={type}
+        getProductData={getProductData}
       />
     </>
   );
