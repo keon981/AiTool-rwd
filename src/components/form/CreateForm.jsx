@@ -88,7 +88,7 @@ const CreateForm = ({ newData, setNewData }) => {
             id="is_enabled"
             name="is_enabled"
             onChange={handleChange}
-            value={newData.is_enabled}
+            checked={!!newData.is_enabled}
           />
         </div>
       </main>

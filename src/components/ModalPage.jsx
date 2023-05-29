@@ -11,15 +11,20 @@ const ModalPage = ({
 }) => {
   const handleSumbit = async (e) => {
     e.preventDefault();
+    let api = `/v2/api/${import.meta.env.VITE_API_PATH}/admin/product`;
+    let method = 'post';
     try {
+      if (type === 'edit') {
+        api = `/v2/api/${import.meta.env.VITE_API_PATH}/admin/product/${newData.id}`;
+        method = 'put';
+      }
       // eslint-disable-next-line no-unused-vars
-      const res = await axios.post(`/v2/api/${import.meta.env.VITE_API_PATH}/admin/product`, {
+      const res = await axios[method](api, {
         data: newData,
       });
-      // console.log(' newDatat------------', res);
       hideModal();
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   };
 
@@ -28,16 +33,18 @@ const ModalPage = ({
       <section className="container modal-dialog  modal-lg">
         <form className="modal-content" method="post" onSubmit={handleSumbit}>
           <header className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">建立新商品</h5>
+            <h5 className="modal-title" id="exampleModalLabel">
+              {type === 'create' ? '建立新商品' : `編輯 ${newData.title}`}
+            </h5>
             <button type="button" className="btn-close" aria-label="Close" onClick={() => hideModal()} />
           </header>
 
-          {type === 'create' || type === 'edit'
-            ? (<CreateForm newData={newData} setNewData={setNewData} />) : (
+          {type === 'delete'
+            ? (
               <div className="modal-body">
                 <p>Modal body text goes here.</p>
               </div>
-            )}
+            ) : (<CreateForm newData={newData} setNewData={setNewData} />) }
 
           <menu className="modal-footer">
             <button type="reset" className="btn btn-secondary">重置</button>

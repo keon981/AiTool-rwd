@@ -9,13 +9,13 @@ import ProductTable from '../components/ProductTable';
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [pagination, setPagination] = useState({});
-  // const [productData, setProductData] = useState([]);
 
   useEffect(() => {
     (async () => {
       const res = await axios.get(`/v2/api/${import.meta.env.VITE_API_PATH}/products`);
       setProducts(res.data.products);
       setPagination(res.data.pagination);
+      console.log('products-------------', products);
     })();
   }, [products]);
 

@@ -13,7 +13,6 @@ const ProductTable = ({ products }) => {
           <th scope="col">年齡</th>
           <th scope="col">性別</th>
           <th scope="col" className=" text-center">其他</th>
-
         </tr>
       </thead>
       <tbody>
