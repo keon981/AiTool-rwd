@@ -5,10 +5,13 @@ import { Modal } from 'bootstrap';
 
 import ModalPage from './ModalPage';
 
-const ModalBtn = ({ btnText, outLine, idName }) => {
+const ModalBtn = ({
+  btnText, outLine, idName, type,
+}) => {
   const productModal = useRef(null);
   const showModal = () => {
     productModal.current.show();
+    console.log('type---', type);
   };
   const hideModal = () => {
     productModal.current.hide().dispose();
@@ -25,7 +28,7 @@ const ModalBtn = ({ btnText, outLine, idName }) => {
       <button type="button" className={`btn ${outLine ? 'btn-outline-primary' : 'btn-primary'} m-1`} onClick={showModal}>
         {btnText}
       </button>
-      <ModalPage hideModal={hideModal} idName={idName} />
+      <ModalPage hideModal={hideModal} idName={idName} type={type} />
     </>
   );
 };

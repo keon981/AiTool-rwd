@@ -42,21 +42,18 @@ const ModalPage = ({ hideModal, idName, type }) => {
             <h5 className="modal-title" id="exampleModalLabel">建立新商品</h5>
             <button type="button" className="btn-close" aria-label="Close" onClick={() => hideModal()} />
           </header>
-          {/*
-            type === 'create'
-              ? (<CreateForm newData={newData} setNewData={setNewData} />)
-              : type === 'edit'
-                ? (<CreateForm productData={productData} setProductData={setProductData} />)
-                : type === 'delete'
-                  ? (
-                    <div className="modal-body">
-                      <p>Modal body text goes here.</p>
-                    </div>
-                  )
-                  : null
-                  */
-          }
-          <CreateForm newData={newData} setNewData={setNewData} />
+
+          {type === 'create'
+            && (<CreateForm newData={newData} setNewData={setNewData} />)}
+          {/* {type === 'edit'
+              && (<CreateForm productData={productData} setProductData={setProductData} />)} */}
+          {type === 'delete'
+                && (
+                  <div className="modal-body">
+                    <p>Modal body text goes here.</p>
+                  </div>
+                )}
+
           <menu className="modal-footer">
             <button type="reset" className="btn btn-secondary">重置</button>
             <button type="submit" className="btn btn-primary">送出</button>
