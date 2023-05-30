@@ -11,12 +11,13 @@ const ProductList = () => {
   const [pagination, setPagination] = useState({});
   const ObjCompare = (obj1, obj2) => (JSON.stringify(obj1) !== JSON.stringify(obj2));
 
-  const getProductData = async () => {
-    const res = await axios.get(`/v2/api/${import.meta.env.VITE_API_PATH}/products`);
+  const getProductData = async (page = 1) => {
+    const res = await axios.get(`/v2/api/${import.meta.env.VITE_API_PATH}/products?page=${page}`);
     if (ObjCompare(products, res.data.products)) {
       setProducts(res.data.products);
     }
     setPagination(res.data.pagination);
+    console.log(res.data.pagination);
   };
 
   // useEffect(() => {
@@ -25,7 +26,7 @@ const ProductList = () => {
   useEffect(() => {
     getProductData();
     console.log('products----', products);
-  }, [products]);
+  }, []);
 
   return (
     <section>
@@ -33,7 +34,7 @@ const ProductList = () => {
         <ModalBtn btnText="新增商品" idName="create" type="create" getProductData={getProductData} />
       </div>
       <ProductTable products={products} getProductData={getProductData} />
-      <Pagination pagination={pagination} />
+      <Pagination pagination={pagination} getProductData={getProductData} />
     </section>
   );
 };
