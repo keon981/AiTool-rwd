@@ -25,7 +25,7 @@ const ModalBtn = ({
         is_enabled: 1,
         imageUrl: '',
       });
-    } else if (type === 'edit') {
+    } else {
       setNewData(productData);
     }
   };
