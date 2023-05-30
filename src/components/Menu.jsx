@@ -15,7 +15,7 @@ const Menu = () => {
         <Link to="/admin">產品列表</Link>
       </li>
       <li className="list-group-item">
-        <Link to="/admin">優惠券列表</Link>
+        <Link to="/admin/coupons">優惠券列表</Link>
       </li>
       <li className="list-group-item">
         <Link to="/admin">訂單列表</Link>

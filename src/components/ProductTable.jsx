@@ -16,7 +16,7 @@ const ProductTable = ({ products, getProductData }) => {
         </tr>
       </thead>
       <tbody>
-        {products.map((item) => (
+        { products && products.map((item) => (
           <tr key={item.id}>
             <th scope="row">{item.num}</th>
             <td>{item.category}</td>

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import Admin from './pages/admin/Index';
+import Coupons from './pages/Coupons';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import ProductList from './pages/ProductList';
@@ -33,6 +34,7 @@ const App = () => {
       {token && (
       <Route path="/admin" element={<Admin />}>
         <Route index element={<ProductList />} />
+        <Route path="coupons" element={<Coupons />} />
       </Route>
       )}
       <Route path="/*" element={<NotFound />} />

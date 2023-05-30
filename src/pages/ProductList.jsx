@@ -20,9 +20,6 @@ const ProductList = () => {
     console.log(res.data.pagination);
   };
 
-  // useEffect(() => {
-  //   getProductData();
-  // }, []);
   useEffect(() => {
     getProductData();
     console.log('products----', products);
